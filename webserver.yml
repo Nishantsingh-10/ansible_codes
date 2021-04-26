@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+  - name: installing webserver
+    package:
+       name: httpd
+       state: present
+
+  - name: Copy file
+    copy:
+       src: /root/ansible_code/p1.html
+       dest: /var/www/html
+ 
+  - name: start service
+    service:
+       name: httpd
+       state: started
+
+  - name: Stopping firewall
+    service:
+       name: firewalld
+       state: stopped
